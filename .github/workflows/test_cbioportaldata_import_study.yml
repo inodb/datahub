@@ -25,7 +25,9 @@ jobs:
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
     - name: 'Checkout git repo'
-      uses: actions/checkout@v1
+      uses: actions/checkout@v2
+      with:
+        lfs: true
     # Runs a single command using the runners shell
     - name: Test study converstion to MultiAssayExperiment
       run: Rscript --vanilla -e 'library(cBioPortalData); source("/app/R/cBioDataPack.R"); source("/app/R/utils.R");loadStudy("./public/acc_tcga")'
