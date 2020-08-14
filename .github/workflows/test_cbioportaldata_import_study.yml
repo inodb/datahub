@@ -32,9 +32,8 @@ jobs:
         lfs: true
     # Runs a single command using the runners shell
     - name: Test study converstion to MultiAssayExperiment
-      
       uses: docker://inodb/cbioportaldata:split-cbiodatapack-function
       with:
         # run: echo "Hello ${{ github.event.inputs.name }}"
-        run: |
-          Rscript --vanilla -e 'library(cBioPortalData); source("/app/R/cBioDataPack.R"); source("/app/R/utils.R");loadStudy("./public/acc_tcga")'
+        args: |
+          Rscript --vanilla -e 'library(cBioPortalData);source("/app/R/cBioDataPack.R");source("/app/R/utils.R");loadStudy("./public/acc_tcga")'
