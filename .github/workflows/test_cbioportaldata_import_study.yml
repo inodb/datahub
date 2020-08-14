@@ -23,14 +23,18 @@ jobs:
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
+    - name: Configure git-lfs to download only specific study
+      run: |
+        git config --global lfs.fetchinclude 'public/acc_tcga/**'
     - name: 'Checkout git repo'
       uses: actions/checkout@v2
-    - name: 'pull specific study data'
-      run: git lfs pull -I ./public/acc_tcga
+      with:
+        lfs: true
     # Runs a single command using the runners shell
     - name: Test study converstion to MultiAssayExperiment
       
       uses: docker://inodb/cbioportaldata:split-cbiodatapack-function
       with:
-        args: Rscript --vanilla -e 'library(cBioPortalData); source("/app/R/cBioDataPack.R"); source("/app/R/utils.R");loadStudy("./public/acc_tcga")'
         # run: echo "Hello ${{ github.event.inputs.name }}"
+        run: |
+          Rscript --vanilla -e 'library(cBioPortalData); source("/app/R/cBioDataPack.R"); source("/app/R/utils.R");loadStudy("./public/acc_tcga")'
