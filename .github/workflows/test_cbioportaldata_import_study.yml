@@ -35,5 +35,5 @@ jobs:
       uses: docker://inodb/cbioportaldata:split-cbiodatapack-function
       with:
         # run: echo "Hello ${{ github.event.inputs.name }}"
-        args: |
-          Rscript --vanilla -e 'library(cBioPortalData);source("/app/R/cBioDataPack.R");source("/app/R/utils.R");loadStudy("./public/acc_tcga")'
+        entrypoint: Rscript
+        args: -e 'library(cBioPortalData);source("/app/R/cBioDataPack.R");source("/app/R/utils.R");loadStudy("./public/acc_tcga")
