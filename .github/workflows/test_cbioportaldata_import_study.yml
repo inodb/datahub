@@ -36,4 +36,4 @@ jobs:
       with:
         # run: echo "Hello ${{ github.event.inputs.name }}"
         entrypoint: Rscript
-        args: -e library(cBioPortalData);source("/app/R/cBioDataPack.R");source("/app/R/utils.R");loadStudy("./public/acc_tcga")
+        args: -e library(cBioPortalData);source('/app/R/cBioDataPack.R');source('/app/R/utils.R');loadStudy('./public/acc_tcga')
